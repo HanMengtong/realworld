@@ -1,0 +1,30 @@
+{
+  "name": "realworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HanMengtong/realworld.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HanMengtong/realworld/issues"
+  },
+  "homepage": "https://github.com/HanMengtong/realworld#readme",
+  "dependencies": {
+    "@nuxt/cli": "^2.15.3",
+    "@vue/cli": "^4.5.12",
+    "nuxt": "^2.15.3",
+    "unfetch": "^4.2.0",
+    "vue": "^2.6.12",
+    "vue-client-only": "^2.0.0",
+    "vue-no-ssr": "^1.1.1",
+    "vue-router": "^3.5.1"
+  }
+}
