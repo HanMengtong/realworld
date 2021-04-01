@@ -5,6 +5,12 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _7d165de4 = () => interopDefault(import('..\\pages\\layout' /* webpackChunkName: "" */))
+const _2e79be19 = () => interopDefault(import('..\\pages\\home' /* webpackChunkName: "" */))
+const _be136522 = () => interopDefault(import('..\\pages\\login' /* webpackChunkName: "" */))
+const _15bf7e2f = () => interopDefault(import('..\\pages\\profile' /* webpackChunkName: "" */))
+const _3370585d = () => interopDefault(import('..\\pages\\settings' /* webpackChunkName: "" */))
+const _71478427 = () => interopDefault(import('..\\pages\\editor' /* webpackChunkName: "" */))
+const _06ec7d08 = () => interopDefault(import('..\\pages\\article' /* webpackChunkName: "" */))
 
 const emptyFn = () => {}
 
@@ -19,7 +25,36 @@ export const routerOptions = {
 
   routes: [{
     path: "/",
-    component: _7d165de4
+    component: _7d165de4,
+    children: [{
+      path: "",
+      component: _2e79be19,
+      name: "Home"
+    }, {
+      path: "/login",
+      component: _be136522,
+      name: "Login"
+    }, {
+      path: "/register",
+      component: _be136522,
+      name: "Register"
+    }, {
+      path: "/profile/:username",
+      component: _15bf7e2f,
+      name: "Profile"
+    }, {
+      path: "/settings",
+      component: _3370585d,
+      name: "Settings"
+    }, {
+      path: "/editor",
+      component: _71478427,
+      name: "Editor"
+    }, {
+      path: "/article/:slug",
+      component: _06ec7d08,
+      name: "Article"
+    }]
   }],
 
   fallback: false

@@ -7,12 +7,42 @@ module.exports = {
             routes.push(...[
                 {
                     path: '/',
-                    component: resolve(__dirname, 'pages/layout/')
+                    component: resolve(__dirname, 'pages/layout/'),
                     children: [
                         {
                             path: '',
                             name: 'Home',
                             component: resolve(__dirname, 'pages/home/')
+                        },
+                        {
+                            path: '/login',
+                            name: 'Login',
+                            component: resolve(__dirname, 'pages/login/')
+                        },
+                        {
+                            path: '/register',
+                            name: 'Register',
+                            component: resolve(__dirname, 'pages/login/')
+                        },
+                        {
+                            path: '/profile/:username',
+                            name: 'Profile',
+                            component: resolve(__dirname, 'pages/profile/')
+                        },
+                        {
+                            path: '/settings',
+                            name: 'Settings',
+                            component: resolve(__dirname, 'pages/settings/')
+                        },
+                        {
+                            path: '/editor',
+                            name: 'Editor',
+                            component: resolve(__dirname, 'pages/editor/')
+                        },
+                        {
+                            path: '/article/:slug',
+                            name: 'Article',
+                            component: resolve(__dirname, 'pages/article/')
                         }
                     ]
                 }
