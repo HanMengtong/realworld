@@ -11,15 +11,15 @@
           <ul class="error-messages">
             <li>That email is already taken</li>
           </ul>
-          <form>
+          <form @submit.prevent="onSubmit">
             <fieldset class="form-group" v-if="!isLogin">
-              <input class="form-control form-control-lg" type="text" placeholder="Your Name" />
+              <input class="form-control form-control-lg" type="text" placeholder="Your Name" required/>
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Email" />
+              <input class="form-control form-control-lg" type="email" placeholder="Email" v-model="user.email" required/>
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="password" placeholder="Password" />
+              <input class="form-control form-control-lg" type="password" placeholder="Password" v-model="user.password" required/>
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right">{{isLogin ? 'Sign in' : 'Sign up'}}</button>
           </form>
@@ -30,12 +30,33 @@
 </template>
 
 <script>
+import { login } from '@/api/user'
 export default {
     name: 'LoginIndex',
-    computed: {
-        isLogin () {
-            return this.$route.name === 'Login'
+    data() {
+      return {
+        user: {
+          email: '',
+          password: ''
         }
+      }
+    },
+    methods: {
+      async onSubmit () {
+        // 提交表单登陆
+        const { data } = await login({
+          user: this.user
+        })
+        console.log(data)
+        // 保存用户的登录状态
+        // 跳转至首页
+        this.$router.push('/')
+      }
+    },
+    computed: {
+      isLogin () {
+        return this.$route.name === 'Login'
+      }
     }
 }
 </script>
