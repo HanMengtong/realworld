@@ -67,6 +67,7 @@
 
 <script>
 export default {
+    middleware: 'auth',
     name: 'UserProfile'
 }
 </script>
