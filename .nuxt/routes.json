@@ -6,46 +6,38 @@
       {
         "path": "",
         "name": "Home",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/home",
-        "_name": "_7082fd60"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/home"
       },
       {
         "path": "/login",
         "name": "Login",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login",
-        "_name": "_3049f118"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login"
       },
       {
         "path": "/register",
         "name": "Register",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login",
-        "_name": "_3049f118"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login"
       },
       {
         "path": "/profile/:username",
         "name": "Profile",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/profile",
-        "_name": "_1eb8db98"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/profile"
       },
       {
         "path": "/settings",
         "name": "Settings",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/settings",
-        "_name": "_49a2a814"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/settings"
       },
       {
         "path": "/editor",
         "name": "Editor",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/editor",
-        "_name": "_672f54c4"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/editor"
       },
       {
         "path": "/article/:slug",
         "name": "Article",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/article",
-        "_name": "_05831ee5"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/article"
       }
-    ],
-    "_name": "_4f91a14a"
+    ]
   }
 ]

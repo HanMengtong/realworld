@@ -33,6 +33,7 @@
 
 <script>
 import { login, register } from '@/api/user'
+const cookie = process.client ? require('js-cookie') : undefined
 export default {
     name: 'LoginIndex',
     data() {
@@ -54,9 +55,11 @@ export default {
           }) : await register({
             user: this.user
           })
-          console.log(data)
+          // console.log(data)
           // 保存用户的登录状态
-          
+          this.$store.commit('setUser', data.user)
+          // 为了防止刷新页面数据丢失，需要将数据持久化
+          cookie.set('user', data.user)
           // 跳转至首页
           this.$router.push('/')
         } catch (error) {
