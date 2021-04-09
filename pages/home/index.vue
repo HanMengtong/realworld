@@ -71,14 +71,7 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <a href="" class="tag-pill tag-default">programming</a>
-              <a href="" class="tag-pill tag-default">javascript</a>
-              <a href="" class="tag-pill tag-default">emberjs</a>
-              <a href="" class="tag-pill tag-default">angularjs</a>
-              <a href="" class="tag-pill tag-default">react</a>
-              <a href="" class="tag-pill tag-default">mean</a>
-              <a href="" class="tag-pill tag-default">node</a>
-              <a href="" class="tag-pill tag-default">rails</a>
+              <a href="" class="tag-pill tag-default" v-for="(i, idx) in tags" :key="idx">{{i}}</a>
             </div>
           </div>
         </div>
@@ -88,24 +81,32 @@
 </template>
 
 <script>
-import { getArticles } from "@/api/article";
+import { getArticles } from "@/api/article"
+import { getTags } from "@/api/tag"
 export default {
   name: "HomeIndex",
   async asyncData({ query }) {
     const page = parseInt(query.page || 1)
     const limit = 10
-    const { data } = await getArticles({
-      limit: limit,
-      offset: (page - 1) * limit
-    })
+    // 获取文章列表接口、获取tag接口没有因果关系，应同时调用
+    const [ articleRes, tagRes ] = await Promise.all([
+      getArticles({
+        limit: limit,
+        offset: (page - 1) * limit
+      }),
+      getTags()
+    ])
+    const { articles, articlesCount } = articleRes.data
+    const { tags } = tagRes.data
     return {
-      articles: data.articles,
-      articlesCount: data.articlesCount,
+      articles,
+      articlesCount,
+      tags,
       limit,
       page
     }
   },
-  watchQuery: ['page'],
+  watchQuery: ['page'], // 监听参数字符串更改并在更改时执行组件方法 (asyncData, fetch, validate, layout, ...)
   computed: {
       totalPage () {
         return Math.ceil(this.articlesCount / this.limit)

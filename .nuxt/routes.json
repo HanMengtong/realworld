@@ -6,38 +6,46 @@
       {
         "path": "",
         "name": "Home",
-        "component": "F:\\\\realworld\\\\pages\\\\home"
+        "component": "F:\\\\realworld\\\\pages\\\\home",
+        "_name": "_2e79be19"
       },
       {
         "path": "/login",
         "name": "Login",
-        "component": "F:\\\\realworld\\\\pages\\\\login"
+        "component": "F:\\\\realworld\\\\pages\\\\login",
+        "_name": "_be136522"
       },
       {
         "path": "/register",
         "name": "Register",
-        "component": "F:\\\\realworld\\\\pages\\\\login"
+        "component": "F:\\\\realworld\\\\pages\\\\login",
+        "_name": "_be136522"
       },
       {
         "path": "/profile/:username",
         "name": "Profile",
-        "component": "F:\\\\realworld\\\\pages\\\\profile"
+        "component": "F:\\\\realworld\\\\pages\\\\profile",
+        "_name": "_15bf7e2f"
       },
       {
         "path": "/settings",
         "name": "Settings",
-        "component": "F:\\\\realworld\\\\pages\\\\settings"
+        "component": "F:\\\\realworld\\\\pages\\\\settings",
+        "_name": "_3370585d"
       },
       {
         "path": "/editor",
         "name": "Editor",
-        "component": "F:\\\\realworld\\\\pages\\\\editor"
+        "component": "F:\\\\realworld\\\\pages\\\\editor",
+        "_name": "_71478427"
       },
       {
         "path": "/article/:slug",
         "name": "Article",
-        "component": "F:\\\\realworld\\\\pages\\\\article"
+        "component": "F:\\\\realworld\\\\pages\\\\article",
+        "_name": "_06ec7d08"
       }
-    ]
+    ],
+    "_name": "_7d165de4"
   }
 ]

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 用户登录
+// 获取公共文章列表
 export const getArticles = params => {
     return request({
         method: 'GET',
