@@ -19,23 +19,53 @@
               </li>
             </ul>
           </div>
-          <div class="article-preview" v-for="article in articles" :key="article.slug">
+          <div
+            class="article-preview"
+            v-for="article in articles"
+            :key="article.slug"
+          >
             <div class="article-meta">
-              <nuxt-link :to="{name: 'Profile', params: {username: article.author.username}}"><img :src="article.author.image"/></nuxt-link>
+              <nuxt-link
+                :to="{
+                  name: 'Profile',
+                  params: { username: article.author.username },
+                }"
+                ><img :src="article.author.image"
+              /></nuxt-link>
               <div class="info">
-                <nuxt-link :to="{name: 'Profile', params: {username: article.author.username}}" class="author">{{article.author.username}}</nuxt-link>
-                <span class="date">{{article.createdAt}}</span>
+                <nuxt-link
+                  :to="{
+                    name: 'Profile',
+                    params: { username: article.author.username },
+                  }"
+                  class="author"
+                  >{{ article.author.username }}</nuxt-link
+                >
+                <span class="date">{{ article.createdAt }}</span>
               </div>
-              <button class="btn btn-outline-primary btn-sm pull-xs-right" :class="{'active': article.favorited}">
-                <i class="ion-heart"></i> {{article.favoritesCount}}
+              <button
+                class="btn btn-outline-primary btn-sm pull-xs-right"
+                :class="{ active: article.favorited }"
+              >
+                <i class="ion-heart"></i> {{ article.favoritesCount }}
               </button>
             </div>
-            <nuxt-link :to="{name: 'Article', params: {slug: article.slug}}" class="preview-link">
-              <h1>{{article.title}}</h1>
-              <p>{{article.description}}</p>
+            <nuxt-link
+              :to="{ name: 'Article', params: { slug: article.slug } }"
+              class="preview-link"
+            >
+              <h1>{{ article.title }}</h1>
+              <p>{{ article.description }}</p>
               <span>Read more...</span>
             </nuxt-link>
           </div>
+          <nav>
+            <ul class="pagination">
+                <li class="page-item" :class="{'active': i === page}" v-for="i in totalPage" :key="i">
+                    <nuxt-link class="page-link" :to="{name: 'Home', query: {page: i}}">{{i}}</nuxt-link>
+                </li>
+            </ul>
+          </nav>
         </div>
         <div class="col-md-3">
           <div class="sidebar">
@@ -58,15 +88,28 @@
 </template>
 
 <script>
-import { getArticles } from '@/api/article'
+import { getArticles } from "@/api/article";
 export default {
-  name: 'HomeIndex',
-  async asyncData () {
-    const { data } = await getArticles()
+  name: "HomeIndex",
+  async asyncData({ query }) {
+    const page = parseInt(query.page || 1)
+    const limit = 10
+    const { data } = await getArticles({
+      limit: limit,
+      offset: (page - 1) * limit
+    })
     return {
-        articles: data.articles,
-        articlesCount: data.articlesCount
+      articles: data.articles,
+      articlesCount: data.articlesCount,
+      limit,
+      page
     }
+  },
+  watchQuery: ['page'],
+  computed: {
+      totalPage () {
+        return Math.ceil(this.articlesCount / this.limit)
+      }
   }
 }
 </script>
