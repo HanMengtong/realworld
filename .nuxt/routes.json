@@ -1,42 +1,42 @@
 [
   {
     "path": "/",
-    "component": "/Users/hanmengtong/Documents/application/realworld/pages/layout",
+    "component": "F:\\\\realworld\\\\pages\\\\layout",
     "children": [
       {
         "path": "",
         "name": "Home",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/home"
+        "component": "F:\\\\realworld\\\\pages\\\\home"
       },
       {
         "path": "/login",
         "name": "Login",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login"
+        "component": "F:\\\\realworld\\\\pages\\\\login"
       },
       {
         "path": "/register",
         "name": "Register",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login"
+        "component": "F:\\\\realworld\\\\pages\\\\login"
       },
       {
         "path": "/profile/:username",
         "name": "Profile",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/profile"
+        "component": "F:\\\\realworld\\\\pages\\\\profile"
       },
       {
         "path": "/settings",
         "name": "Settings",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/settings"
+        "component": "F:\\\\realworld\\\\pages\\\\settings"
       },
       {
         "path": "/editor",
         "name": "Editor",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/editor"
+        "component": "F:\\\\realworld\\\\pages\\\\editor"
       },
       {
         "path": "/article/:slug",
         "name": "Article",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/article"
+        "component": "F:\\\\realworld\\\\pages\\\\article"
       }
     ]
   }

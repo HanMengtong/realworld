@@ -46,7 +46,7 @@
             <div class="container">
                 <a href="/" class="logo-font">HLOG</a>
                 <span class="attribution">
-                This is a blog website from <a href="https://github.com/HanMengtong">HanMengtong</a> by nuxt and vue.
+                This is a technology blog website from <a href="https://github.com/HanMengtong">HanMengtong</a> by nuxt and vue.
                 </span>
             </div>
         </footer>
