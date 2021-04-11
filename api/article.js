@@ -8,6 +8,7 @@ export const getArticles = params => {
         params
     })
 }
+
 // 获取关注的文章列表
 export const getFeedArticles = params => {
     return request({
@@ -18,5 +19,21 @@ export const getFeedArticles = params => {
         //     Authorization: `Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTU0NjkwLCJ1c2VybmFtZSI6ImN1MDUyNSIsImV4cCI6MTYyMzMxNjI1Mn0.yEmcicrg5CBtkCOtYGNb2bNnh6SYzDk0_xßa7YkGqecA`
         // },
         params
+    })
+}
+
+// 添加点赞
+export const addFavorite = slug => {
+    return request({
+        method: 'POST',
+        url: `/api/articles/${slug}/favorite`
+    })
+}
+
+// 取消点赞
+export const deleteFavorite = slug => {
+    return request({
+        method: 'DELETE',
+        url: `/api/articles/${slug}/favorite`
     })
 }
