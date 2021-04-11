@@ -11,11 +11,14 @@
         <div class="col-md-9">
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
-                <a class="nav-link disabled" href="">Your Feed</a>
+              <li class="nav-item" v-if="user">
+                <nuxt-link class="nav-link" :class="{'active': tab === 'your_feed'}" :to="{name: 'Home', query: {tab: 'your_feed'}}" exact>Your Feed</nuxt-link>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Global Feed</a>
+                <nuxt-link class="nav-link" :class="{'active': tab === 'global_feed'}" :to="{name: 'Home', query: {tab: 'global_feed'}}" exact>Global Feed</nuxt-link>
+              </li>
+              <li class="nav-item" v-if="tag">
+                <nuxt-link class="nav-link" :class="{'active': tab === 'tag'}" :to="{name: 'Home', query: {tab: 'tag', tag: tag}}">#{{tag}}</nuxt-link>
               </li>
             </ul>
           </div>
@@ -62,7 +65,7 @@
           <nav>
             <ul class="pagination">
                 <li class="page-item" :class="{'active': i === page}" v-for="i in totalPage" :key="i">
-                    <nuxt-link class="page-link" :to="{name: 'Home', query: {page: i}}">{{i}}</nuxt-link>
+                    <nuxt-link class="page-link" :to="{name: 'Home', query: {tab: tab, page: i, tag: $route.query.tag}}">{{i}}</nuxt-link>
                 </li>
             </ul>
           </nav>
@@ -71,7 +74,7 @@
           <div class="sidebar">
             <p>Popular Tags</p>
             <div class="tag-list">
-              <a href="" class="tag-pill tag-default" v-for="(i, idx) in tags" :key="idx">{{i}}</a>
+              <nuxt-link :to="{name: 'Home', query: {tab: 'tag', tag: i}}" class="tag-pill tag-default" v-for="(i, idx) in tags" :key="idx">{{i}}</nuxt-link>
             </div>
           </div>
         </div>
@@ -81,18 +84,23 @@
 </template>
 
 <script>
-import { getArticles } from "@/api/article"
+import { getArticles, getFeedArticles } from "@/api/article"
 import { getTags } from "@/api/tag"
+import { mapState } from 'vuex'
 export default {
   name: "HomeIndex",
-  async asyncData({ query }) {
+  async asyncData({ query, store }) {
     const page = parseInt(query.page || 1)
     const limit = 10
+    const { tag } = query
+    const tab = query.tab || 'global_feed'
+    const loadArticles = store.state.user && tab === 'your_feed' ? getFeedArticles : getArticles
     // 获取文章列表接口、获取tag接口没有因果关系，应同时调用
     const [ articleRes, tagRes ] = await Promise.all([
-      getArticles({
+      loadArticles({
         limit: limit,
-        offset: (page - 1) * limit
+        offset: (page - 1) * limit,
+        tag
       }),
       getTags()
     ])
@@ -103,14 +111,17 @@ export default {
       articlesCount,
       tags,
       limit,
-      page
+      page,
+      tag,
+      tab
     }
   },
-  watchQuery: ['page'], // 监听参数字符串更改并在更改时执行组件方法 (asyncData, fetch, validate, layout, ...)
+  watchQuery: ['page', 'tag', 'tab'], // 监听参数字符串更改并在更改时执行组件方法 (asyncData, fetch, validate, layout, ...)
   computed: {
-      totalPage () {
-        return Math.ceil(this.articlesCount / this.limit)
-      }
+    ...mapState(['user']),
+    totalPage () {
+      return Math.ceil(this.articlesCount / this.limit)
+    }
   }
 }
 </script>

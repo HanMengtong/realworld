@@ -1,51 +1,43 @@
 [
   {
     "path": "/",
-    "component": "F:\\\\realworld\\\\pages\\\\layout",
+    "component": "/Users/hanmengtong/Documents/application/realworld/pages/layout",
     "children": [
       {
         "path": "",
         "name": "Home",
-        "component": "F:\\\\realworld\\\\pages\\\\home",
-        "_name": "_2e79be19"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/home"
       },
       {
         "path": "/login",
         "name": "Login",
-        "component": "F:\\\\realworld\\\\pages\\\\login",
-        "_name": "_be136522"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login"
       },
       {
         "path": "/register",
         "name": "Register",
-        "component": "F:\\\\realworld\\\\pages\\\\login",
-        "_name": "_be136522"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login"
       },
       {
         "path": "/profile/:username",
         "name": "Profile",
-        "component": "F:\\\\realworld\\\\pages\\\\profile",
-        "_name": "_15bf7e2f"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/profile"
       },
       {
         "path": "/settings",
         "name": "Settings",
-        "component": "F:\\\\realworld\\\\pages\\\\settings",
-        "_name": "_3370585d"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/settings"
       },
       {
         "path": "/editor",
         "name": "Editor",
-        "component": "F:\\\\realworld\\\\pages\\\\editor",
-        "_name": "_71478427"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/editor"
       },
       {
         "path": "/article/:slug",
         "name": "Article",
-        "component": "F:\\\\realworld\\\\pages\\\\article",
-        "_name": "_06ec7d08"
+        "component": "/Users/hanmengtong/Documents/application/realworld/pages/article"
       }
-    ],
-    "_name": "_7d165de4"
+    ]
   }
 ]
