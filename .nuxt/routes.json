@@ -1,51 +1,51 @@
 [
   {
     "path": "/",
-    "component": "/Users/hanmengtong/Documents/application/realworld/pages/layout",
+    "component": "F:\\\\realworld\\\\pages\\\\layout",
     "children": [
       {
         "path": "",
         "name": "Home",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/home",
-        "_name": "_7082fd60"
+        "component": "F:\\\\realworld\\\\pages\\\\home",
+        "_name": "_2e79be19"
       },
       {
         "path": "/login",
         "name": "Login",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login",
-        "_name": "_3049f118"
+        "component": "F:\\\\realworld\\\\pages\\\\login",
+        "_name": "_be136522"
       },
       {
         "path": "/register",
         "name": "Register",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/login",
-        "_name": "_3049f118"
+        "component": "F:\\\\realworld\\\\pages\\\\login",
+        "_name": "_be136522"
       },
       {
         "path": "/profile/:username",
         "name": "Profile",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/profile",
-        "_name": "_1eb8db98"
+        "component": "F:\\\\realworld\\\\pages\\\\profile",
+        "_name": "_15bf7e2f"
       },
       {
         "path": "/settings",
         "name": "Settings",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/settings",
-        "_name": "_49a2a814"
+        "component": "F:\\\\realworld\\\\pages\\\\settings",
+        "_name": "_3370585d"
       },
       {
         "path": "/editor",
         "name": "Editor",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/editor",
-        "_name": "_672f54c4"
+        "component": "F:\\\\realworld\\\\pages\\\\editor",
+        "_name": "_71478427"
       },
       {
         "path": "/article/:slug",
         "name": "Article",
-        "component": "/Users/hanmengtong/Documents/application/realworld/pages/article",
-        "_name": "_05831ee5"
+        "component": "F:\\\\realworld\\\\pages\\\\article",
+        "_name": "_06ec7d08"
       }
     ],
-    "_name": "_4f91a14a"
+    "_name": "_7d165de4"
   }
 ]
