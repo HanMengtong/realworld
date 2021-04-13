@@ -70,3 +70,4 @@ export const deleteComment = params => {
         url: `/api/articles/${params.slug}/comments/${params.id}`
     })
 }
+

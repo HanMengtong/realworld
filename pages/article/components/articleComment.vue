@@ -31,13 +31,16 @@
 
 <script>
 import { getComments, addComment, deleteComment } from '@/api/article'
-import { mapState } from 'vuex'
 export default {
     name: 'ArticleComment',
     props: {
         article: {
             type: Object,
             require: true
+        },
+        user: {
+          type: Object,
+          require: true
         }
     },
     data () {
@@ -48,9 +51,6 @@ export default {
     },
     async mounted () {
         await this.getCommentsFn()
-    },
-    computed: {
-        ...mapState(['user'])
     },
     methods: {
         async getCommentsFn () {

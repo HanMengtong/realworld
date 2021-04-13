@@ -4,7 +4,7 @@
       <div class="container">
         <!-- 文章标题 -->
         <h1>{{article.title}}</h1>
-        <ArticleMeta :article="article"></ArticleMeta>
+        <ArticleMeta :article="article" @click="articleClick"></ArticleMeta>
       </div>
     </div>
     <div class="container page">
@@ -16,9 +16,12 @@
       <div class="article-actions">
         <ArticleMeta :article="article" />
       </div>
-      <div class="row">
+      <div v-if="!user" class="article-actions">
+        <nuxt-link to="/login">Sign in</nuxt-link> or <nuxt-link to="/register">Sign up</nuxt-link> to add comments on this article.
+      </div>
+      <div class="row" v-if="user">
         <div class="col-xs-12 col-md-8 offset-md-2">
-          <ArticleComment :article="article"/>
+          <ArticleComment :article="article" :user="user"/>
         </div>
       </div>
     </div>
@@ -26,10 +29,12 @@
 </template>
 
 <script>
-import { getArticle } from '@/api/article'
+import { getArticle, addFavorite, deleteFavorite } from '@/api/article'
+import { followUser, unFollowUser } from '@/api/user'
 import MarkdownIt from 'markdown-it'
 import ArticleMeta from './components/articleMeta'
 import ArticleComment from './components/articleComment'
+import { mapState } from 'vuex'
 export default {
   name: "Article",
   async asyncData({ params }) {
@@ -56,6 +61,24 @@ export default {
   components: {
     ArticleMeta,
     ArticleComment
+  },
+  computed: {
+      ...mapState(['user'])
+  },
+  methods: {
+    async articleClick (val) {
+      if (val.type === 2) {
+        // 文章点赞
+        if (this.article.favorited) {
+          await deleteFavorite(val.data)
+          this.article.favoritesCount --
+        } else {
+          await addFavorite(val.data)
+          this.article.favoritesCount ++
+        }
+        this.article.favorited = !this.article.favorited
+      }
+    }
   }
 }
 </script>

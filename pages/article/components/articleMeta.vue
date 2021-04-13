@@ -5,11 +5,11 @@
             <nuxt-link :to="{name: 'Profile', params: {username: article.author.username}}" class="author">{{article.author.username}}</nuxt-link>
             <span class="date">{{article.createdAt | date('MMM DD, YYYY')}}</span>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" :class="{'active': article.author.following}">
-            <i class="ion-plus-round"></i>&nbsp; Follow {{article.author.username}} <span class="counter">(10)</span>
+        <button class="btn btn-sm btn-outline-secondary" :class="{'active': article.author.following}" @click="articleClick(1)">
+            <i class="ion-plus-round"></i>&nbsp; Follow {{article.author.username}} <span class="counter"></span>
         </button>
         &nbsp;&nbsp;
-        <button class="btn btn-sm btn-outline-primary" :class="{'active': article.favorited}">
+        <button class="btn btn-sm btn-outline-primary" :class="{'active': article.favorited}" @click="articleClick(2)">
             <i class="ion-heart"></i>&nbsp; Favorite Post <span class="counter">({{article.favoritesCount}})</span>
         </button>
     </div>
@@ -22,6 +22,22 @@ export default {
         article: {
             type: Object,
             require: true
+        }
+    },
+    methods: {
+        articleClick (type) {
+            let val = {
+                type: type,
+                data: ''
+            }
+            if (type === 1) {
+                // 关注作者
+                val.data = this.article.author.username
+            } else if (type === 2) {
+                // 文章点赞
+                val.data = this.article.slug
+            }
+            this.$emit('click', val)
         }
     }
 }
