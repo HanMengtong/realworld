@@ -14,7 +14,7 @@
       </div>
       <hr />
       <div class="article-actions">
-        <ArticleMeta :article="article" />
+        <ArticleMeta :article="article" @click="articleClick"/>
       </div>
       <div v-if="!user" class="article-actions">
         <nuxt-link to="/login">Sign in</nuxt-link> or <nuxt-link to="/register">Sign up</nuxt-link> to add comments on this article.
@@ -67,8 +67,15 @@ export default {
   },
   methods: {
     async articleClick (val) {
-      if (val.type === 2) {
-        // 文章点赞
+      console.log(val)
+      if (val.type === 1) {
+        if (this.article.author.following) {
+          await unFollowUser(val.data)
+        } else {
+          await followUser(val.data)
+        }
+        this.article.author.following = !this.article.author.following
+      } else if (val.type === 2) {
         if (this.article.favorited) {
           await deleteFavorite(val.data)
           this.article.favoritesCount --
