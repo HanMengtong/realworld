@@ -20,7 +20,7 @@
                             <nuxt-link class="nav-link" to="/settings"><i class="ion-gear-a"></i>&nbsp;Settings</nuxt-link>
                         </li>
                         <li class="nav-item">
-                            <nuxt-link to="/profile/1" class="nav-link">
+                            <nuxt-link :to="{name: 'Profile', params: {username: user.username}}" class="nav-link">
                                 <img class="user-pic" :src="user.image">
                                 {{user.username}}
                             </nuxt-link>

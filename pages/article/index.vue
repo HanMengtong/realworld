@@ -30,7 +30,7 @@
 
 <script>
 import { getArticle, addFavorite, deleteFavorite } from '@/api/article'
-import { followUser, unFollowUser } from '@/api/user'
+import { followUser, unFollowUser } from '@/api/profile'
 import MarkdownIt from 'markdown-it'
 import ArticleMeta from './components/articleMeta'
 import ArticleComment from './components/articleComment'

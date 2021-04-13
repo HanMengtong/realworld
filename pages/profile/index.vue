@@ -4,10 +4,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-10 offset-md-1">
-                        <img src="http://i.imgur.com/Qr71crq.jpg" class="user-img" />
-                        <h4>Eric Simons</h4>
-                        <p>Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games</p>
-                        <button class="btn btn-sm btn-outline-secondary action-btn"><i class="ion-plus-round"></i>&nbsp;Follow Eric Simons</button>
+                        <img :src="profile.image" class="user-img" />
+                        <h4>{{profile.username}}</h4>
+                        <p>{{profile.bio}}</p>
+                        <button v-if="profile.username !== user.username" class="btn btn-sm btn-outline-secondary action-btn" :class="{'active': profile.following}"><i class="ion-plus-round"></i>&nbsp;Follow {{profile.username}}</button>
                     </div>
                 </div>
             </div>
@@ -66,9 +66,22 @@
 </template>
 
 <script>
+import { getProfile } from '@/api/profile'
+import { getArticles } from '@/api/article'
+import { mapState } from 'vuex'
 export default {
     middleware: 'auth',
-    name: 'UserProfile'
+    name: 'UserProfile',
+    async asyncData({params}) {
+        const { data } = await getProfile(params.username)
+        const { profile } = data
+        return {
+            profile
+        }
+    },
+    computed: {
+        ...mapState(['user'])
+    }
 }
 </script>
 

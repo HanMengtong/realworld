@@ -18,18 +18,19 @@ export const register = data => {
     })
 }
 
-// 关注用户
-export const followUser = username => {
+// 获取当前用户信息
+export const getUser = () => {
     return request({
-        method: 'POST',
-        url: `/api/profiles/${username}/follow`
+        method: 'GET',
+        url: '/api/user'
     })
 }
 
-// 取消关注用户
-export const unFollowUser = username => {
+// 更新修改当前用户信息
+export const updateUser = params => {
     return request({
-        method: 'DELETE',
-        url: `/api/profiles/${username}/follow`
+        method: 'PUT',
+        url: '/api/user',
+        params
     })
 }
