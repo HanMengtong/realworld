@@ -6,7 +6,7 @@
       </div>
       <div class="card-footer">
         <img :src="user.image" class="comment-author-img" />
-        <button class="btn btn-sm btn-primary" @click="addCommentFn">Post Comment</button>
+        <button class="btn btn-sm btn-primary" type="button" @click="addCommentFn">Post Comment</button>
       </div>
     </form>
     <div class="card" v-for="i in comments" :key="i.id">
@@ -67,6 +67,7 @@ export default {
                 }
             }
             await addComment(params)
+            this.getCommentsFn()
         },
         async deleteCommentFn (data) {
             const params = {

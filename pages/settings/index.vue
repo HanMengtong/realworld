@@ -19,9 +19,9 @@
                 <input class="form-control form-control-lg" type="text" placeholder="Email" v-model="user.email">
               </fieldset>
               <fieldset class="form-group">
-                <input class="form-control form-control-lg" type="password" placeholder="New Password" v-model="user.password" required>
+                <input class="form-control form-control-lg" type="password" placeholder="New Password" v-model="user.password">
               </fieldset>
-              <button class="btn btn-lg btn-primary pull-xs-right" @click="updateClick">
+              <button class="btn btn-lg btn-primary pull-xs-right" type="button" @click="updateClick">
                 Update Settings
               </button>
           </fieldset>
@@ -34,25 +34,29 @@
 
 <script>
 import { getUser, updateUser } from '@/api/user'
+const cookie = process.client ? require('js-cookie') : undefined
 export default {
   middleware: 'auth',
   name: 'Settings',
-  async asyncData({ params }) {
+  async asyncData () {
     const { data } = await getUser()
     const { user } = data
-    user.password = ''
     return {
       user
     }
   },
   methods: {
     async updateClick () {
-      const { data } = await updateUser(this.user)
-      // 保存用户的登录状态
-      this.$store.commit('setUser', data.user)
-      // 为了防止刷新页面数据丢失，需要将数据持久化
-      cookie.set('user', data.user)
-      this.$router.push({name: 'Profile', params: {username: data.username}})
+      const user = {user: this.user}
+      const { data } = await updateUser(user)
+      if (data.user) {
+        // 将修改的数据更新到store中
+        this.$store.commit('setUser', data.user)
+        // 为了防止刷新页面数据丢失，需要将数据持久化
+        cookie.set('user', data.user)
+        // 跳转至首页
+        this.$router.push({name: 'Profile', params: {username: data.user.username}})
+      }
     }
   }
 }

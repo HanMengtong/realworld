@@ -21,4 +21,11 @@ export default ({store}) => {
         // 请求失败
         return Promise.reject(error)
     })
+    request.interceptors.response.use(function (response) {
+        return response
+    }, function (error) {
+        // 对请求错误做些什么
+        // 请求失败
+        return Promise.reject(error)
+    })
 }

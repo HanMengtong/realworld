@@ -27,10 +27,10 @@ export const getUser = () => {
 }
 
 // 更新修改当前用户信息
-export const updateUser = params => {
+export const updateUser = data => {
     return request({
         method: 'PUT',
         url: '/api/user',
-        params
+        data
     })
 }
