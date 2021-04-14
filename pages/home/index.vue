@@ -62,7 +62,10 @@
               <h1>{{ article.title }}</h1>
               <p>{{ article.description }}</p>
               <span>Read more...</span>
-            </nuxt-link>
+              <ul class="tag-list">
+                <li class="tag-default tag-pill tag-outline" v-for="(i, index) in article.tagList" :key="index">{{i}}</li>
+              </ul>
+          </nuxt-link>
           </div>
           <nav>
             <ul class="pagination">
