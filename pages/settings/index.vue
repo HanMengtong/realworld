@@ -21,8 +21,14 @@
               <fieldset class="form-group">
                 <input class="form-control form-control-lg" type="password" placeholder="New Password" v-model="user.password">
               </fieldset>
-              <button class="btn btn-lg btn-primary pull-xs-right" type="button" @click="updateClick">
-                Update Settings
+              <div class="clearfix">
+                <button class="btn btn-lg btn-primary pull-xs-right" type="button" :disabled="btnDisabled" @click="updateClick">
+                  Update Settings
+                </button>
+              </div>
+              <hr>
+              <button class="btn btn-outline-danger" @click="logout">
+                Or click here to logout.
               </button>
           </fieldset>
         </form>
@@ -45,8 +51,14 @@ export default {
       user
     }
   },
+  data () {
+    return {
+      btnDisabled: false
+    }
+  },
   methods: {
     async updateClick () {
+      this.btnDisabled = true
       const user = {user: this.user}
       const { data } = await updateUser(user)
       if (data.user) {
@@ -57,11 +69,22 @@ export default {
         // 跳转至首页
         this.$router.push({name: 'Profile', params: {username: data.user.username}})
       }
+    },
+    logout () {
+      // 删除用户数据
+      this.$store.commit('removeUser')
+      cookie.remove('user')
+      // 跳转至首页
+      this.$router.push('/')
     }
   }
 }
 </script>
 
 <style scoped>
-
+.clearfix:after {
+  display: block;
+  clear: both;
+  content: '';
+}
 </style>
