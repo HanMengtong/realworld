@@ -53,6 +53,7 @@ module.exports = {
     // 注册插件
     plugins: [
         '~/plugins/request.js',
-        '~/plugins/dayjs.js'
+        '~/plugins/dayjs.js',
+        { src: '@/plugins/markdown-it-vue', ssr: false }
     ]
 }

@@ -15,6 +15,7 @@ import { createStore } from './store.js'
 
 import nuxt_plugin_request_e6dd6e04 from 'nuxt_plugin_request_e6dd6e04' // Source: ..\\plugins\\request.js (mode: 'all')
 import nuxt_plugin_dayjs_66ce5f68 from 'nuxt_plugin_dayjs_66ce5f68' // Source: ..\\plugins\\dayjs.js (mode: 'all')
+import nuxt_plugin_markdownitvue_3324b40e from 'nuxt_plugin_markdownitvue_3324b40e' // Source: ..\\plugins\\markdown-it-vue (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -213,6 +214,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_dayjs_66ce5f68 === 'function') {
     await nuxt_plugin_dayjs_66ce5f68(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_markdownitvue_3324b40e === 'function') {
+    await nuxt_plugin_markdownitvue_3324b40e(app.context, inject)
   }
 
   // Lock enablePreview in context

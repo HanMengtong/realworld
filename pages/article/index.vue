@@ -14,7 +14,9 @@
       </div>
       <hr />
       <div class="article-actions">
-        <ArticleMeta :article="article" @click="articleClick"/>
+        <div class="col-xs-12 col-md-8 offset-md-2">
+          <ArticleMeta :article="article" @click="articleClick"/>
+        </div>
       </div>
       <div v-if="!user" class="article-actions">
         <nuxt-link to="/login">Sign in</nuxt-link> or <nuxt-link to="/register">Sign up</nuxt-link> to add comments on this article.
@@ -29,7 +31,7 @@
 </template>
 
 <script>
-import { getArticle, addFavorite, deleteFavorite } from '@/api/article'
+import { getArticle, deleteArticle, addFavorite, deleteFavorite } from '@/api/article'
 import { followUser, unFollowUser } from '@/api/profile'
 import MarkdownIt from 'markdown-it'
 import ArticleMeta from './components/articleMeta'
@@ -63,7 +65,7 @@ export default {
     ArticleComment
   },
   computed: {
-      ...mapState(['user'])
+    ...mapState(['user'])
   },
   methods: {
     async articleClick (val) {
@@ -84,6 +86,9 @@ export default {
           this.article.favoritesCount ++
         }
         this.article.favorited = !this.article.favorited
+      } else if (val.type === 3) {
+        await deleteArticle(val.data)
+        this.$router.push({name: 'Home', query: {tab: 'your_feed'}})
       }
     }
   }

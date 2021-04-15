@@ -38,10 +38,36 @@ export const deleteFavorite = slug => {
     })
 }
 
+// 发表文章
+export const publishArticle = data => {
+    return request({
+        method: 'POST',
+        url: '/api/articles',
+        data
+    })
+}
+
 // 获取文章详情
 export const getArticle = slug => {
     return request({
         method: 'GET',
+        url: `/api/articles/${slug}`
+    })
+}
+
+// 编辑文章
+export const editArticle = params => {
+    return request({
+        method: 'PUT',
+        url: `/api/articles/${params.slug}`,
+        data: params.data
+    })
+}
+
+// 删除文章
+export const deleteArticle = slug => {
+    return request({
+        method: 'DELETE',
         url: `/api/articles/${slug}`
     })
 }
