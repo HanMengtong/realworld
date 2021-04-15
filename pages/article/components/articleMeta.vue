@@ -1,8 +1,8 @@
 <template>
   <div class="article-meta">
-        <nuxt-link :to="{name: 'Profile', params: {username: article.author.username}}"><img :src="article.author.image" /></nuxt-link>
+        <nuxt-link :to="{name: 'Profile', query: {username: article.author.username}}"><img :src="article.author.image" /></nuxt-link>
         <div class="info">
-            <nuxt-link :to="{name: 'Profile', params: {username: article.author.username}}" class="author">{{article.author.username}}</nuxt-link>
+            <nuxt-link :to="{name: 'Profile', query: {username: article.author.username}}" class="author">{{article.author.username}}</nuxt-link>
             <span class="date">{{article.createdAt | date('MMM DD, YYYY')}}</span>
         </div>
         <button class="btn btn-sm btn-outline-secondary" :class="{'active': article.author.following}" @click="articleClick(1)">

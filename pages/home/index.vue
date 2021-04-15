@@ -22,58 +22,7 @@
               </li>
             </ul>
           </div>
-          <div
-            class="article-preview"
-            v-for="article in articles"
-            :key="article.slug"
-          >
-            <div class="article-meta">
-              <nuxt-link
-                :to="{
-                  name: 'Profile',
-                  params: { username: article.author.username },
-                }"
-                ><img :src="article.author.image"
-              /></nuxt-link>
-              <div class="info">
-                <nuxt-link
-                  :to="{
-                    name: 'Profile',
-                    params: { username: article.author.username },
-                  }"
-                  class="author"
-                  >{{ article.author.username }}</nuxt-link
-                >
-                <span class="date">{{ article.createdAt | date('MMM DD, YYYY') }}</span>
-              </div>
-              <button
-                class="btn btn-outline-primary btn-sm pull-xs-right"
-                :class="{ active: article.favorited }"
-                @click="onFavorite(article)"
-                :disabled="article.favoriteDisabled"
-              >
-                <i class="ion-heart"></i> {{ article.favoritesCount }}
-              </button>
-            </div>
-            <nuxt-link
-              :to="{ name: 'Article', params: { slug: article.slug } }"
-              class="preview-link"
-            >
-              <h1>{{ article.title }}</h1>
-              <p>{{ article.description }}</p>
-              <span>Read more...</span>
-              <ul class="tag-list">
-                <li class="tag-default tag-pill tag-outline" v-for="(i, index) in article.tagList" :key="index">{{i}}</li>
-              </ul>
-          </nuxt-link>
-          </div>
-          <nav>
-            <ul class="pagination">
-                <li class="page-item" :class="{'active': i === page}" v-for="i in totalPage" :key="i">
-                    <nuxt-link class="page-link" :to="{name: 'Home', query: {tab: tab, page: i, tag: $route.query.tag}}">{{i}}</nuxt-link>
-                </li>
-            </ul>
-          </nav>
+          <List :list="articles" :total="totalPage" :page="page" :limit="limit" :tab="tab" :name="'Home'" :tag="$route.query.tag" />
         </div>
         <div class="col-md-3">
           <div class="sidebar">
@@ -92,6 +41,7 @@
 import { getArticles, getFeedArticles, addFavorite, deleteFavorite } from "@/api/article"
 import { getTags } from "@/api/tag"
 import { mapState } from 'vuex'
+import List from '../components/List'
 export default {
   name: "HomeIndex",
   async asyncData({ query, store }) {
@@ -132,6 +82,9 @@ export default {
     totalPage () {
       return Math.ceil(this.articlesCount / this.limit)
     }
+  },
+  components: {
+    List
   },
   methods: {
     async onFavorite (article) {

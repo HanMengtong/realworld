@@ -14,11 +14,11 @@
         <p class="card-text">{{i.body}}</p>
       </div>
       <div class="card-footer">
-        <nuxt-link :to="{ name: 'Profile', params: { username: i.author.username } }" class="comment-author">
+        <nuxt-link :to="{ name: 'Profile', query: { username: i.author.username } }" class="comment-author">
           <img :src="i.author.image" class="comment-author-img" />
         </nuxt-link>
         &nbsp;
-        <nuxt-link :to="{ name: 'Profile', params: { username: i.author.username } }" class="comment-author">{{i.author.username}}</nuxt-link>
+        <nuxt-link :to="{ name: 'Profile', query: { username: i.author.username } }" class="comment-author">{{i.author.username}}</nuxt-link>
         <span class="date-posted">{{i.createdAt | date('MMM DD, YYYY')}}</span>
         <span class="mod-options" v-if="i.author.username === user.username">
             <i class="ion-trash-a" @click="deleteCommentFn(i)"></i>

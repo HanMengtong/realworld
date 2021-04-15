@@ -39,7 +39,7 @@ export const routerOptions = {
       component: _be136522,
       name: "Register"
     }, {
-      path: "/profile/:username",
+      path: "/profile",
       component: _15bf7e2f,
       name: "Profile"
     }, {

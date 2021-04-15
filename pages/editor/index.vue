@@ -13,6 +13,7 @@
               </fieldset>
               <fieldset class="form-group">
                 <textarea class="form-control" rows="8" placeholder="Write your article (in markdown)"></textarea>
+                <!-- <markdown-it-vue class="md-body" :content="content"/> -->
               </fieldset>
               <fieldset class="form-group">
                 <input type="text" class="form-control" placeholder="Enter tags" />
@@ -28,11 +29,21 @@
 </template>
 
 <script>
+import MarkdownItVue from 'markdown-it-vue'
+import 'markdown-it-vue/dist/markdown-it-vue.css'
 export default {
   // 路由匹配组件渲染之前会先执行中间件处理
   middleware: 'auth',
   name: "Editor",
-};
+  components: {
+    MarkdownItVue
+  },
+  data () {
+    return {
+      content: '# your markdown content'
+    }
+  }
+}
 </script>
 
 <style scoped>

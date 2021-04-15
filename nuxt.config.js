@@ -26,7 +26,7 @@ module.exports = {
                             component: resolve(__dirname, 'pages/login/')
                         },
                         {
-                            path: '/profile/:username',
+                            path: '/profile',
                             name: 'Profile',
                             component: resolve(__dirname, 'pages/profile/')
                         },
