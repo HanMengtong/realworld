@@ -4,30 +4,28 @@
       <div class="row">
         <div class="col-md-10 offset-md-1 col-xs-12">
           <form>
-            <fieldset>
-              <fieldset class="form-group">
-                <input type="text" class="form-control form-control-lg" placeholder="Article Title" v-model="article.title"/>
-              </fieldset>
-              <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="What's this article about?" v-model="article.description"/>
-              </fieldset>
-              <fieldset class="form-group">
-                <textarea class="form-control md-text" rows="8" placeholder="Write your article (in markdown)" v-model="article.body"></textarea>
-                <div class="previewCon">
-                  <p class="previewTxt">预览 :</p>
-                  <markdown-it-vue class="md-body" :content="article.body"/>
-                </div>
-              </fieldset>
-              <fieldset class="form-group">
-                <input type="text" class="form-control" placeholder="Enter tags" v-model="tag" @keydown.enter="tagClick(1, $event)"/>
-                <div class="tag-list">
-                  <span class="tag-default tag-pill" v-for="(i, index) in article.tagList" :key="index">
-                    {{i}}<i class="ion-close-round" style="margin-left: 10px;" @click="tagClick(2, index)"></i>
-                  </span>
-                </div>
-              </fieldset>
-              <button class="btn btn-lg pull-xs-right btn-primary" type="button" @click="publishClick">Publish Article</button>
+            <fieldset class="form-group">
+              <input type="text" class="form-control form-control-lg" placeholder="Article Title" v-model="article.title"/>
             </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="What's this article about?" v-model="article.description"/>
+            </fieldset>
+            <fieldset class="form-group">
+              <textarea class="form-control md-text" rows="8" placeholder="Write your article (in markdown)" v-model="article.body"></textarea>
+              <div class="previewCon">
+                <p class="previewTxt">预览 :</p>
+                <markdown-it-vue class="md-body" :content="article.body"/>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <input type="text" class="form-control" placeholder="Enter tags" v-model="tag" @keydown.enter="tagClick(1, $event)"/>
+              <div class="tag-list">
+                <span class="tag-default tag-pill" v-for="(i, index) in article.tagList" :key="index">
+                  {{i}}<i class="ion-close-round" style="margin-left: 10px;" @click="tagClick(2, index)"></i>
+                </span>
+              </div>
+            </fieldset>
+            <button class="btn btn-lg pull-xs-right btn-primary" type="button" :disabled="btnDisabled" @click="publishClick">{{isEdit ? 'Save Article' : 'Publish Article'}}</button>
           </form>
         </div>
       </div>
@@ -61,7 +59,8 @@ export default {
         tagList: []
       },
       tag: '',
-      isEdit: false
+      isEdit: false,
+      btnDisabled: false
     }
   },
   methods: {
@@ -78,6 +77,11 @@ export default {
       }
     },
     async publishClick () {
+      this.btnDisabled = true
+      if (!this.article.title || !this.article.description || !this.article.body) {
+        this.btnDisabled = false
+        return false
+      }
       const params = {
         article: this.article
       }

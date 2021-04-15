@@ -11,6 +11,9 @@
       <div class="row article-content">
         <!-- 文章正文内容 -->
         <div class="col-md-12" v-html="article.body"></div>
+        <ul class="tag-list">
+          <li class="tag-default tag-pill tag-outline" v-for="(i, index) in article.tagList" :key="index" >{{i}}</li>
+        </ul>
       </div>
       <hr />
       <div class="article-actions">
