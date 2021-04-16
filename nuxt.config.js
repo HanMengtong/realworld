@@ -50,10 +50,14 @@ module.exports = {
             ])
         }
     },
+    server: {
+        host: '0.0.0.0', // localhost 本地访问 ip可在局域网访问 0.0.0.0监测所有地址
+        port: 3389
+    },
     // 注册插件
     plugins: [
         '~/plugins/request.js',
         '~/plugins/dayjs.js',
-        { src: '@/plugins/markdown-it-vue', ssr: false }
+        { src: '~/plugins/markdown-it-vue', ssr: false }
     ]
 }
